@@ -114,4 +114,36 @@ describe('simple immer', () => {
     })
     expect(nextState.value).toBe(nextState)
   })
+
+  it('curry produce', async () => {
+    const mapper = produce((draft, index) => {
+      draft.index = index
+    }, {})
+    expect([{}, {}, {}].map(mapper))
+      .toEqual([{index: 0}, {index: 1}, {index: 2}])
+    expect(mapper(undefined, 1)).toEqual({index: 1})
+  })
+
+  it('produce as object method', async () => {
+    const world = {
+      counter: {count: 1},
+      inc: produce(function(draft) {
+        expect(this).toBe(world)
+        draft.counter.count = this.counter.count + 1
+      }),
+    }
+    expect(world.inc(world).counter.count).toBe(2)
+  })
+
+  it('supports the spread operator', () => {
+    const base = {foo: {x: 0, y: 0}, bar: [0, 0]}
+    const result = produce(base, (draft) => {
+      draft.foo = {x: 1, ...draft.foo, y: 1}
+      draft.bar = [1, ...draft.bar, 1]
+    })
+    expect(result).toEqual({
+      foo: {x: 0, y: 1},
+      bar: [1, 0, 0, 1],
+    })
+  })
 })

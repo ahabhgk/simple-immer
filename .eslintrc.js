@@ -14,5 +14,7 @@ module.exports = {
   'rules': {
     'require-jsdoc': 'off',
     'semi': ['error', 'never', {'beforeStatementContinuationChars': 'always'}],
+    'indent': ['error', 2],
+    'no-invalid-this': 'off',
   },
 }
