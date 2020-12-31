@@ -1,5 +1,5 @@
-import { beforeEach, expect } from '@jest/globals'
-import { produce } from './index.js'
+import {beforeEach, expect} from '@jest/globals'
+import {produce} from './index.js'
 
 describe('simple immer', () => {
   let baseState
@@ -11,7 +11,7 @@ describe('simple immer', () => {
         c: null,
       },
       value: 'hi',
-      array: [1, 2, [3, 4, { value: 'immer' }]],
+      array: [1, 2, [3, 4, {value: 'immer'}]],
     }
   })
 
@@ -20,7 +20,7 @@ describe('simple immer', () => {
     expect(nextState).toBe(baseState)
   })
 
-  it('should return the original without modifications when reading stuff', () => {
+  it('should return the original when reading stuff', () => {
     const nextState = produce(baseState, (draft) => {
       expect(draft.value).toBe('hi')
       expect(draft.value).toBe('hi')
