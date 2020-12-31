@@ -72,7 +72,7 @@ describe('simple immer', () => {
       draft.array[2][0]++
       draft.array[2][2].value = 'hi'
     })
-    expect(nextState.array[2][0]).toBe(3)
+    expect(nextState.array[2][0]).toBe(4)
     expect(nextState.array[2][2].value).toBe('hi')
   })
 
