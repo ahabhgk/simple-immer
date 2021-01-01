@@ -1,4 +1,4 @@
-import {beforeEach, expect} from '@jest/globals'
+import {describe, it, beforeEach, expect} from '@jest/globals'
 import {produce} from './index.js'
 
 describe('simple immer', () => {

@@ -100,8 +100,7 @@ export function createImmer(base) {
 
 export function produce(base, producer) {
   if (typeof base === 'function' && producer !== 'function') {
-    return function(s = producer, ...args) {
-      // obj.update = produce(draft => ...)
+    return function(s = producer, ...args) { // TEST: produce as object method
       return produce(s, (draft) => base.call(this, draft, ...args))
     }
   }
